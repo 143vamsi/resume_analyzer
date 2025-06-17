@@ -1,7 +1,6 @@
 import spacy
 import re
 
-nlp = spacy.load('en_core_web_sm')
 
 def extract_keywords(text):
     doc = nlp(text.lower())
@@ -9,6 +8,7 @@ def extract_keywords(text):
     return list(set(keywords))
 
 def analyze_resume_against_jd(resume_text, job_desc):
+    nlp = spacy.load('en_core_web_sm')
     resume_text = resume_text.lower()
     job_keywords = extract_keywords(job_desc)
     matched = []
