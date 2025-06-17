@@ -1,1 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Resume Analyzer</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <script>
+    function handleDragDrop(e) {
+      e.preventDefault();
+      document.getElementById('fileInput').files = e.dataTransfer.files;
+    }
+
+    function triggerFileInput() {
+      document.getElementById('fileInput').click();
+    }
+  </script>
+</head>
+<body class="bg-gray-50 min-h-screen font-sans text-gray-800">
+
+  <div class="max-w-7xl mx-auto p-6 grid grid-cols-1 md:grid-cols-3 gap-8">
+
+    <!-- Left Sidebar: ATS Info -->
+    <div class="md:col-span-1 space-y-6">
+      <div class="bg-white p-5 rounded-lg shadow border">
+        <h2 class="text-xl font-semibold mb-2">🤖 What is ATS?</h2>
+        <p class="text-sm text-gray-600">
+          Applicant Tracking Systems (ATS) are used by employers to filter resumes automatically. They look for specific keywords, skills, and formatting to score your resume before a human sees it.
+        </p>
+      </div>
+
+      <div class="bg-white p-5 rounded-lg shadow border">
+        <h2 class="text-xl font-semibold mb-2">📊 What is an ATS Score?</h2>
+        <p class="text-sm text-gray-600">
+          This score reflects how well your resume aligns with job postings. It’s calculated based on keywords, action verbs, formatting, and overall structure.
+        </p>
+      </div>
+
+      <div class="bg-white p-5 rounded-lg shadow border">
+        <h2 class="text-xl font-semibold mb-2">💡 Resume Tips</h2>
+        <ul class="list-disc list-inside text-sm text-gray-600 space-y-1">
+          <li>Use clear headings and standard fonts</li>
+          <li>Include role-specific keywords</li>
+          <li>Use action verbs like "Led", "Built", "Managed"</li>
+          <li>Keep formatting simple — avoid tables</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Main Upload Panel -->
+    <div class="md:col-span-2 flex items-center justify-center">
+      <div class="bg-white shadow-xl rounded-xl w-full max-w-xl p-8 border">
+
+        <h1 class="text-3xl font-bold mb-4 text-center">Upload Your Resume</h1>
+        <p class="text-gray-600 text-center mb-6">Supported formats: PDF, DOCX · Max size: 5MB</p>
+
+        <!-- ✅ Upload Form Starts -->
+        <form action="/" method="post" enctype="multipart/form-data">
+
+          <!-- Drag & Drop File Upload -->
+          <div ondragover="event.preventDefault();" ondrop="handleDragDrop(event); triggerFileInput();"
+               onclick="triggerFileInput()"
+               class="border-2 border-dashed border-blue-300 rounded-lg p-6 text-center cursor-pointer hover:border-blue-500 transition">
+            <p class="text-blue-600 font-medium">📂 Drag & Drop your resume here or click to upload</p>
+            <input id="fileInput" name="resume" type="file" accept=".pdf,.docx"
+                   class="hidden" required />
+          </div>
+
+          <!-- Job Description Paste Area -->
+          <div class="mt-6">
+            <label class="block text-sm font-medium mb-1">Paste Job Description:</label>
+            <textarea name="job_description" rows="6" required
+                      class="w-full p-2 border rounded mb-4"
+                      placeholder="Paste the job description here..."></textarea>
+          </div>
+
+          <!-- ✅ Submit Button -->
+          <button type="submit"
+                  class="w-full bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-700 transition font-semibold shadow">
+            🔍 Analyze Resume
+          </button>
+
+        </form>
+        <!-- ✅ Upload Form Ends -->
+
+        <!-- Help Link -->
+        <p class="mt-4 text-sm text-gray-500 text-center">
+          Need help? <a href="#" class="text-blue-600 hover:underline">View sample resume</a>
+        </p>
+
+      </div>
+    </div>
+
+  </div>
+
+</body>
+</html>
 
